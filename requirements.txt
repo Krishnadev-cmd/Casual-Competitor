@@ -8,3 +8,6 @@ fsspec
 streamlit
 matplotlib
 networkx
+scikit-learn
+seaborn
+fsspec

@@ -8,6 +8,7 @@ import time
 import fsspec
 import json
 import matplotlib.pyplot as plt
+from narwhals import col
 import networkx as nx
 import numpy as np
 import pandas as pd
@@ -39,3 +40,18 @@ from causica.distributions import (
 from causica.functional_relationships import DECIEmbedFunctionalRelationships
 from causica.graph.dag_constraint import calculate_dagness
 from Preprocess import preprocess, determine_types
+
+
+def process(df,input_colums):
+    if len(input_colums) > 0:
+        try:
+            df = df[[col.strip() for col in input_colums.split(',')]]
+        except KeyError as e:
+            warnings.warn(f"Column not found: {e}")
+            df = df[[]]
+    df=preprocess(df, drop=False, stratergy='mean', code='Label', scale='Standard')
+    metadata=[{'name': col, 'type': determine_types(col), 'group_name': col} for col in df.columns]
+    with open("metadata.json", "w") as f:
+        json.dump(metadata, f, indent=4)
+
+    variables_path = "metadata.json"

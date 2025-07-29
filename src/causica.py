@@ -38,4 +38,4 @@ from causica.distributions import (
 )
 from causica.functional_relationships import DECIEmbedFunctionalRelationships
 from causica.graph.dag_constraint import calculate_dagness
-from Preprocessing import preprocessing, determine_type
+from Preprocess import preprocess, determine_types

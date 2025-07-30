@@ -43,6 +43,25 @@ def encoding(df,code):
         df[col]=df[col].map({True:1,False:0})
     return df
 
+def preprocess_dates(df):
+    for column in df.columns:
+        # Check if the column contains a string that looks like a date using regex
+        if df[column].dtype == 'object':  # Check only string (object) columns
+            # Try matching common date patterns using regex
+            date_pattern = r'(\d{4}[-/]\d{2}[-/]\d{2}|\d{2}[-/]\d{2}[-/]\d{4}|\d{4}[-/]\d{2}[-/]\d{2})'
+            if df[column].str.contains(date_pattern, na=False).any():
+                # Convert the column to datetime (pandas will handle various formats)
+                df[column] = pd.to_datetime(df[column], errors='coerce')
+                # Extract Year, Month, Day
+                df[column + "_Year"] = df[column].dt.year
+                df[column + "_Month"] = df[column].dt.month
+                df[column + "_Day"] = df[column].dt.day
+                # Drop the original date column
+                df = df.drop(column, axis=1)
+
+    return df
+
+
 #Scaling function
 def scaler(df,scale):
     numerical_cols=df.select_dtypes(include=[np.number]).columns

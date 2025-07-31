@@ -5,7 +5,7 @@ pandas
 numpy
 matplotlib
 seaborn
-networkx
+networkx==2.8.8
 scikit-learn
 
 # Graph visualization dependencies

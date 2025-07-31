@@ -8,9 +8,7 @@
 
 Watch the app in action! See how to upload data, configure analysis, and discover causal relationships:
 
-> **📝 Note**: Replace `YOUR_GOOGLE_DRIVE_FILE_ID` in the URL below with your actual Google Drive video file ID.
-
-[![Causal Discovery Demo](https://img.shields.io/badge/▶️%20Watch%20Demo-Click%20to%20Play-red?style=for-the-badge&logo=youtube)](https://drive.google.com/file/d/YOUR_GOOGLE_DRIVE_FILE_ID/preview)
+[![Causal Discovery Demo](https://github.com/user-attachments/assets/9e8b6f48-b2c7-4ddc-8dfc-50078b58ff9e)
 
 <details>
 <summary>🔧 How to add your Google Drive video</summary>

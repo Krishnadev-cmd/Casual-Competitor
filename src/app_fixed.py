@@ -11,6 +11,7 @@ from io import BytesIO
 from PIL import Image
 
 from dowhy import CausalModel
+from causica_utils import create_graph, create_simple_graph
 from doWhy_utils import digraph_from_nx, run_dowhy_inference
 from Preprocess import preprocess, preprocess_dates
 from Utils import remove_id_columns, manupulate_output
@@ -68,6 +69,9 @@ def main():
                                            placeholder="e.g., sales, profit")
     treatment_variable = st.sidebar.text_input("💊 Treatment variable", 
                                              placeholder="e.g., price, marketing")
+    
+    model_choice = st.sidebar.radio("🤖 Choose model", ("causica", "dowhy"),
+                                  help="Causica: Deep learning, DoWhy: Correlation-based")
 
     uploaded_file = st.sidebar.file_uploader("📁 Upload CSV", type="csv")
 
@@ -112,22 +116,35 @@ def main():
         st.subheader("🕸️ Causal Graph")
         
         with st.spinner("Generating causal graph..."):
-            st.info("📊 Using correlation-based graph discovery")
-            corr_matrix = df.corr()
-            threshold = 0.3
-            
-            dot_string = "digraph {\n"
-            dot_string += f'    "{treatment_variable}" -> "{outcome_variable}";\n'
-            
-            for col in df.columns:
-                if col != outcome_variable and col != treatment_variable:
-                    if abs(corr_matrix.loc[col, outcome_variable]) > threshold:
-                        dot_string += f'    "{col}" -> "{outcome_variable}";\n'
-                    if abs(corr_matrix.loc[col, treatment_variable]) > threshold:
-                        dot_string += f'    "{col}" -> "{treatment_variable}";\n'
-            
-            dot_string += "}"
-            st.write("**Causal Graph (Correlation-based)**")
+            if model_choice == "causica" and fast_mode == "No":
+                st.info("🧠 Running Causica deep learning model... (this may take a moment)")
+                digraph_nx = create_graph(df, outcome_variable, treatment_variable, epochs=1)
+                st.write("**Causal Graph (Causica)**")
+                dot_string = digraph_from_nx(digraph_nx, treatment_variable, outcome_variable)
+                
+            elif model_choice == "causica" and fast_mode == "Yes":
+                st.info("⚡ Fast mode: Using simple graph structure")
+                digraph_nx = create_simple_graph(df.columns.tolist(), treatment_variable, outcome_variable)
+                st.write("**Causal Graph (Fast Mode)**")
+                dot_string = digraph_from_nx(digraph_nx, treatment_variable, outcome_variable)
+                
+            else:  # DoWhy correlation-based
+                st.info("📊 Using correlation-based graph discovery")
+                corr_matrix = df.corr()
+                threshold = 0.3
+                
+                dot_string = "digraph {\n"
+                dot_string += f'    "{treatment_variable}" -> "{outcome_variable}";\n'
+                
+                for col in df.columns:
+                    if col != outcome_variable and col != treatment_variable:
+                        if abs(corr_matrix.loc[col, outcome_variable]) > threshold:
+                            dot_string += f'    "{col}" -> "{outcome_variable}";\n'
+                        if abs(corr_matrix.loc[col, treatment_variable]) > threshold:
+                            dot_string += f'    "{col}" -> "{treatment_variable}";\n'
+                
+                dot_string += "}"
+                st.write("**Causal Graph (Correlation-based)**")
             
             # Display graph
             st.graphviz_chart(dot_string)
@@ -151,6 +168,16 @@ def main():
                                   outcome=outcome_variable)
                 
                 st.success("✅ Causal model created successfully!")
+                
+                # Visualization
+                try:
+                    fig = plt.figure(figsize=(10, 8))
+                    model.view_model(layout="dot")
+                    st.pyplot(fig)
+                    plt.close()
+                except Exception as viz_error:
+                    st.warning("⚠️ Advanced graph visualization not available")
+                    st.info("💡 Graph structure is still being used for causal inference.")
                 
                 # Run inference
                 inference_result = run_dowhy_inference(model)
@@ -187,7 +214,7 @@ def main():
                 st.error("❌ Error in causal inference")
                 
                 if "acyclic" in error_msg.lower():
-                    st.info("💡 Graph contains cycles. Try enabling fast mode.")
+                    st.info("💡 Graph contains cycles. Try fast mode or DoWhy option.")
                 elif "treatment" in error_msg.lower() or "outcome" in error_msg.lower():
                     st.info(f"💡 Variable not found. Available: {list(df.columns)}")
                 else:
@@ -207,8 +234,9 @@ def main():
         ### 📋 Instructions:
         1. **Upload** your CSV dataset
         2. **Specify** treatment and outcome variables
-        3. **Run analysis** to discover causal relationships using DoWhy!
+        3. **Choose** analysis method (Causica for advanced ML, DoWhy for correlations)
         4. **Enable fast mode** for quicker results on large datasets
+        5. **Run analysis** to discover causal relationships!
         
         ### 💡 Tips:
         - **Treatment**: The variable you want to change (e.g., price, marketing spend)

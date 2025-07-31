@@ -47,9 +47,9 @@ def preprocess_dates(df):
     for column in df.columns:
         # Check if the column contains a string that looks like a date using regex
         if df[column].dtype == 'object':  # Check only string (object) columns
-            # Try matching common date patterns using regex
-            date_pattern = r'(\d{4}[-/]\d{2}[-/]\d{2}|\d{2}[-/]\d{2}[-/]\d{4}|\d{4}[-/]\d{2}[-/]\d{2})'
-            if df[column].str.contains(date_pattern, na=False).any():
+            # Try matching common date patterns using regex (simplified pattern)
+            date_pattern = r'\d{4}[-/]\d{2}[-/]\d{2}|\d{2}[-/]\d{2}[-/]\d{4}'
+            if df[column].astype(str).str.contains(date_pattern, na=False, regex=True).any():
                 # Convert the column to datetime (pandas will handle various formats)
                 df[column] = pd.to_datetime(df[column], errors='coerce')
                 # Extract Year, Month, Day
@@ -94,17 +94,17 @@ def preprocess(df, drop=False, stratergy='mean', code='Label', scale='Standard')
     df = handle_outliers(df)
     return df
 
-def determin_types(df, column):
+def determine_types(df, column):
     unique_values=df[column].nunique()
     if pd.api.types.is_numeric_dtype(df[column]):
         if unique_values==2:
-            return 'Boolean'
+            return 'binary'
         elif unique_values < 20:
-            return 'Categorical'
+            return 'categorical'
         else:
-            return 'Continuous'
+            return 'continuous'
     else:
-        return 'Categorical'
+        return 'categorical'
 def determine_number_of_epochs(df):
     print(300/((len(df)/2048)*0.2))
     return int(300/((len(df)/2048)*0.2))

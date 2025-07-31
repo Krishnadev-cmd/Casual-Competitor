@@ -1,0 +1,72 @@
+[
+    {
+        "name": "Age",
+        "type": "continuous",
+        "group_name": "Age"
+    },
+    {
+        "name": "AnnualIncome",
+        "type": "continuous",
+        "group_name": "AnnualIncome"
+    },
+    {
+        "name": "SpendingScore",
+        "type": "continuous",
+        "group_name": "SpendingScore"
+    },
+    {
+        "name": "ProductPrice",
+        "type": "continuous",
+        "group_name": "ProductPrice"
+    },
+    {
+        "name": "DiscountPercent",
+        "type": "continuous",
+        "group_name": "DiscountPercent"
+    },
+    {
+        "name": "ProductCost",
+        "type": "continuous",
+        "group_name": "ProductCost"
+    },
+    {
+        "name": "Profit",
+        "type": "continuous",
+        "group_name": "Profit"
+    },
+    {
+        "name": "FootTraffic",
+        "type": "continuous",
+        "group_name": "FootTraffic"
+    },
+    {
+        "name": "InventoryLevel",
+        "type": "continuous",
+        "group_name": "InventoryLevel"
+    },
+    {
+        "name": "MarketingExpenditure",
+        "type": "continuous",
+        "group_name": "MarketingExpenditure"
+    },
+    {
+        "name": "CompetitorPrice",
+        "type": "continuous",
+        "group_name": "CompetitorPrice"
+    },
+    {
+        "name": "PurchaseDate_Year",
+        "type": "categorical",
+        "group_name": "PurchaseDate_Year"
+    },
+    {
+        "name": "PurchaseDate_Month",
+        "type": "categorical",
+        "group_name": "PurchaseDate_Month"
+    },
+    {
+        "name": "PurchaseDate_Day",
+        "type": "continuous",
+        "group_name": "PurchaseDate_Day"
+    }
+]

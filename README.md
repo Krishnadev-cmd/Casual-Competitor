@@ -2,7 +2,13 @@
 
 A Streamlit web application for discovering causal relationships in your data using Microsoft's DoWhy library. This tool helps you identify and quantify causal effects between variables in your datasets through correlation-based graph discovery and rigorous causal inference.
 
-## 🌟 Features
+## � Live Demo
+
+**Try the app now:** [https://casual-competitor-susbk7aqfls5uxswyrp2qz.streamlit.app/](https://casual-competitor-susbk7aqfls5uxswyrp2qz.streamlit.app/)
+
+*No installation required! Just upload your CSV file and start discovering causal relationships.*
+
+## �🌟 Features
 
 - **Causal Graph Discovery**: Automatically generates causal graphs using correlation-based analysis
 - **Causal Inference**: Estimates causal effects using DoWhy's backdoor identification methods
@@ -17,7 +23,14 @@ A Streamlit web application for discovering causal relationships in your data us
 - Python 3.8+
 - Virtual environment (recommended)
 
-## 🚀 Installation
+## 🚀 Quick Start
+
+### 🌐 Option 1: Use the Live Demo (Recommended)
+Simply visit: **[https://casual-competitor-susbk7aqfls5uxswyrp2qz.streamlit.app/](https://casual-competitor-susbk7aqfls5uxswyrp2qz.streamlit.app/)**
+
+Upload your CSV file and start analyzing causal relationships immediately!
+
+### 💻 Option 2: Local Installation
 
 1. **Clone the repository**:
 ```bash
@@ -41,6 +54,11 @@ source venv_py/bin/activate
 pip install -r requirements.txt
 ```
 
+4. **Run locally**:
+```bash
+streamlit run src/app.py
+```
+
 ## 📦 Dependencies
 
 - **streamlit**: Web application framework
@@ -55,6 +73,13 @@ pip install -r requirements.txt
 
 ## 🎯 Usage
 
+### 🌐 Using the Live Demo
+1. **Visit**: [https://casual-competitor-susbk7aqfls5uxswyrp2qz.streamlit.app/](https://casual-competitor-susbk7aqfls5uxswyrp2qz.streamlit.app/)
+2. **Upload** your CSV file using the sidebar
+3. **Configure** your analysis (see steps below)
+4. **Run** and explore the results!
+
+### 💻 Using Local Installation
 1. **Start the application**:
 ```bash
 streamlit run src/app.py
@@ -62,14 +87,13 @@ streamlit run src/app.py
 
 2. **Open your browser** and navigate to `http://localhost:8501`
 
-3. **Configure your analysis**:
-   - Upload a CSV file
-   - Specify treatment variable (what you want to change)
-   - Specify outcome variable (what you want to predict)
-   - Choose whether to show dataset analysis
-   - Enable fast mode for large datasets
-
-4. **Run the analysis** and explore the results!
+### 📊 Analysis Configuration (Both Options)
+- **Upload** a CSV file
+- **Specify treatment variable** (what you want to change)
+- **Specify outcome variable** (what you want to predict)
+- **Choose** whether to show dataset analysis
+- **Enable fast mode** for large datasets
+- **Run the analysis** and explore the results!
 
 ## 📊 How It Works
 

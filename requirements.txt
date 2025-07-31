@@ -1,18 +1,18 @@
 # Core dependencies for DoWhy-based causal inference
 streamlit
-dowhy
-pandas
-numpy
+dowhy==0.11.1
+pandas<2.0.0
+numpy<2.0.0
 matplotlib
 seaborn
 networkx
-scikit-learn
+scikit-learn<1.4.0
 
 # Graph visualization dependencies
 pydot
 pyparsing==2.4.7
 
 # Additional utility packages
-scipy
+scipy<1.12.0
 statsmodels
 Pillow

@@ -8,7 +8,7 @@
 
 Watch the app in action! See how to upload data, configure analysis, and discover causal relationships:
 
-[![Causal Discovery Demo](https://github.com/user-attachments/assets/9e8b6f48-b2c7-4ddc-8dfc-50078b58ff9e)
+https://github.com/user-attachments/assets/9e8b6f48-b2c7-4ddc-8dfc-50078b58ff9e
 
 <details>
 <summary>🔧 How to add your Google Drive video</summary>

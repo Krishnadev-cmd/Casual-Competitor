@@ -1,4 +1,5 @@
 causica
+dowhy
 pandas
 numpy
 pytorch-lightning
@@ -10,4 +11,5 @@ matplotlib
 networkx
 scikit-learn
 seaborn
-fsspec
+pydot==1.4.2
+pyparsing==2.4.7

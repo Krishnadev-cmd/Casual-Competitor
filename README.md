@@ -1,4 +1,52 @@
-# 🧠 Causal Discovery & Inference
+# 🧠## 🌐 Live Demo
+
+**Try the app now:** [https://casual-competitor-susbk7aqfls5uxswyrp2qz.streamlit.app/](https://casual-competitor-susbk7aqfls5uxswyrp2qz.streamlit.app/)
+
+*No installation required! Just upload your CSV file and start discovering causal relationships.*
+
+## 🎥 Demo Video
+
+Watch the app in action! See how to upload data, configure analysis, and discover causal relationships:
+
+> **📝 Note**: Replace `YOUR_GOOGLE_DRIVE_FILE_ID` in the URL below with your actual Google Drive video file ID.
+
+[![Causal Discovery Demo](https://img.shields.io/badge/▶️%20Watch%20Demo-Click%20to%20Play-red?style=for-the-badge&logo=youtube)](https://drive.google.com/file/d/YOUR_GOOGLE_DRIVE_FILE_ID/preview)
+
+<details>
+<summary>🔧 How to add your Google Drive video</summary>
+
+1. Upload your demo video to Google Drive
+2. Right-click the video → "Get shareable link"
+3. Make sure it's set to "Anyone with the link can view"
+4. Copy the file ID from the URL (the long string between `/d/` and `/view`)
+5. Replace `YOUR_GOOGLE_DRIVE_FILE_ID` in the link above with your actual file ID
+
+**Example**: If your Google Drive link is:
+`https://drive.google.com/file/d/1ABC123xyz789DEF456/view?usp=sharing`
+
+Then your file ID is: `1ABC123xyz789DEF456`
+
+**Alternative display option** (if you prefer the video to play directly in GitHub):
+```html
+<div align="center">
+  <iframe src="https://drive.google.com/file/d/1xcQMgNFicwbHpBuE5N1mBUsf5P5VdoEJ/view?usp=sharing" 
+          width="640" height="360" 
+          allow="autoplay">
+  </iframe>
+</div>
+```
+
+</details>
+
+### 🎯 What the Demo Shows:
+- **Data Upload**: How to upload and preview your CSV dataset
+- **Variable Selection**: Choosing treatment and outcome variables
+- **Causal Graph**: Viewing the generated causal relationship graph
+- **Inference Results**: Understanding the causal effect estimates
+- **Error Handling**: What to do when issues arise
+- **Real Example**: Complete walkthrough with sample data
+
+## 🌟 Features Discovery & Inference
 
 A Streamlit web application for discovering causal relationships in your data using Microsoft's DoWhy library. This tool helps you identify and quantify causal effects between variables in your datasets through correlation-based graph discovery and rigorous causal inference.
 
